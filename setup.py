@@ -20,21 +20,23 @@ if not version:
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
+
 def get_data_files():
     data_files = [
-        ('share/doc/flask_init', ['README.rst'])
+        ('share/doc/flask_init', ['README.md'])
     ]
     return data_files
 
 
 def get_install_requires():
-    requires = ['flask>=0.12.2']
+    requires = ['flask>=0.12.2', 'click>=6.7']
     # if sys.platform.startswith('win'):
     #    requires.append('bottle')
     return requires
 
 
 class tests(Command):
+
     user_options = []
 
     def initialize_option(self):
@@ -61,7 +63,7 @@ setup(
     include_package_data=True,
     data_files=get_data_files(exclude=['tests']),
     entry_points={"console_scripts": [
-        'flask_init = flask_init:main'
+        'finit = flask_init:main'
         ]
     },
     classifiers=[

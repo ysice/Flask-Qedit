@@ -8,8 +8,7 @@
 @time: 18-1-23 上午12:16
 """
 
-from flask_init.finit import main
-
+from flask_init.finit import cli
 
 if __name__ == '__main__':
-        main()
+        cli()

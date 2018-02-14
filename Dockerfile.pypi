@@ -1,0 +1,11 @@
+FROM python:slim-stretch
+
+RUN mkdir -p /build/pypi/
+
+COPY run.sh /build/
+
+COPY . /build/pypi/
+
+WORKDIR /build/pypi/
+
+ENTERPOINT ["/build/run.sh"]

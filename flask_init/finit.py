@@ -8,21 +8,21 @@
 @time: 18-1-23 上午12:19
 """
 
+import os
+import sys
 import click
 
+
 @click.group()
-def  cli():
+def cli():
     """A simple cmd line tool"""
 
-@cli.command('new')
+
+@click.command(help='create new project')
 def new():
-    click.echo('new project')
+    click.echo("add record. {}".format(os.getcwd()))
 
 
-def main():
+cli.add_command(new)
 
-
-
-if __name__ == '__main__':
-    main()
 
