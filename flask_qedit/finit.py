@@ -51,7 +51,7 @@ class Project(object):
         print(exec_cmd.decode('utf-8'))
         return True
 
-    def do_simple(self):
+    def _do_simple(self):
         simple_py = '''
 #!/usr/bin/env python3
 # coding=utf-8
@@ -72,14 +72,34 @@ if __name__ == '__main__':
 
         '''
         with open(os.path.join(self.ppath, self.pname+'.py'), 'w') as f:
-            print(simple_py)
             f.write(simple_py)
-            print("done")
         return True
 
-    def init(self):
+    def _do_venv(self, envpath):
+        venv = '''
+#!/bin/bash
+
+pro_path=$1
+venv_path=$2
+
+source $venv_path/bin/activate
+cd pro_path
+pip install Flask
+pip freeze > requirements.txt
+'''
+        with open(os.path.join(self.ppath, 'env.sh'), 'w') as f:
+            f.write(venv)
+            os.chmod(os.path.join(self.ppath, 'env.sh'), mode=777)
+        try:
+            subprocess.check_output(['bash', os.path.join(self.ppath, 'env.sh'), self.ppath, envpath])
+        except subprocess.CalledProcessError:
+            return False
+        return True
+
+    def init(self, envpath):
         if self.simple:
-            self.do_simple()
+            self._do_simple()
+            self._do_venv(envpath)
         else:
             # Todo
             print("pass")
@@ -107,7 +127,7 @@ def new(project_name, path, envpath, simple):
     if repo.repo():
         if repo.pyenv(project_envpath):
             click.echo("create project {} successful".format(project_name))
-            repo.init()
+            repo.init(project_envpath)
             click.echo("init project")
     click.echo("Maybe Error, Hehe.")
 
