@@ -63,7 +63,7 @@ setup(
     include_package_data=True,
     data_files=get_data_files(),
     entry_points={"console_scripts": [
-        'finit = flask_qedit:main'
+        'finit = flask_qedit.finit:cli'
         ]
     },
     classifiers=[

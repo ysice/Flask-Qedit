@@ -1,2 +1,2 @@
-# Flask-init
+# Flask-Qedit
 Quickly initialize the flask application
