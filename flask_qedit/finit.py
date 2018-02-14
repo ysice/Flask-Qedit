@@ -79,16 +79,20 @@ if __name__ == '__main__':
 def cli():
     """A simple cmd line tool"""
 
+
 @click.command(help='create new project')
 @click.argument('project_name')
 @click.option('--path', default="~/ysbot/repo/")
 @click.option('--envpath', default="~/ysbot/pypi")
 @click.option('--simple', is_flag=True)
-def new(project_name, path, envpath):
+def new(project_name, path, envpath, simple):
     project_path = os.path.join(path, project_name)
-    click.echo("add record. {}".format(os.getcwd()))
-
+    project_envpath = os.path.join(path, envpath)
+    repo = Project(project_name, project_path, simple)
+    if repo.repo():
+        if repo.pyenv(project_envpath):
+            click.echo("create project {} successful".format(project_name))
+            return
+    click.echo("Maybe Error, Hehe.")
 
 cli.add_command(new)
-
-
