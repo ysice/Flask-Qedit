@@ -2,10 +2,10 @@ FROM python:slim-stretch
 
 RUN mkdir -p /build/pypi/
 
-COPY run.sh /build/
+COPY run.sh /build/run.sh
 
 COPY . /build/pypi/
 
 WORKDIR /build/pypi/
 
-ENTERPOINT ["/build/run.sh"]
+ENTRYPOINT ["bash","/build/run.sh"]

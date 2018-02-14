@@ -61,7 +61,7 @@ setup(
     install_requires=get_install_requires(),
     packages=find_packages(),
     include_package_data=True,
-    data_files=get_data_files(exclude=['tests']),
+    data_files=get_data_files(),
     entry_points={"console_scripts": [
         'finit = flask_init:main'
         ]
