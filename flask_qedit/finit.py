@@ -10,6 +10,7 @@
 
 import os
 import click
+import getpass
 import subprocess
 
 
@@ -90,10 +91,15 @@ def cli():
 
 @click.command(help='create new project')
 @click.argument('project_name')
-@click.option('--path', default="~/ysbot/repo/")
-@click.option('--envpath', default="~/ysbot/pypi")
+@click.option('--path', default="ysbot/repo/")
+@click.option('--envpath', default="ysbot/pypi/")
 @click.option('--simple', is_flag=True)
 def new(project_name, path, envpath, simple):
+    user = getpass.getuser()
+    if path.startwith("ysbot"):
+        path = user + '/' + path
+    if envpath.startwith("ysbot"):
+        envpath = user + '/' + envpath
     project_path = os.path.join(path, project_name)
     project_envpath = os.path.join(path, envpath)
     repo = Project(project_name, project_path, simple)
