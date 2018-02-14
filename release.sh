@@ -6,7 +6,8 @@ DOCKER_CON="finit"
 function prepare(){
 
     #cmi=$(git log -n 1 --pretty --format=%h)
-    cmi=$(git describe --tag|sed 's/^v//'| tr '-' '.')
+    #cmi=$(git describe --tag|sed 's/^v//'| tr '-' '.')
+    cmi=$( git describe --tag|sed 's/^v//' | tr '-' '.' | sed 's/.g.*//')
     cp Dockerfile.pypi Dockerfile.release
     uname -s | grep -i darwin > /dev/null
     if [ "$?" -eq 0 ];then
