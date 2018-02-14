@@ -2,6 +2,8 @@ FROM python:slim-stretch
 
 RUN mkdir -p /build/pypi/
 
+ENV version 0.0.0
+
 COPY run.sh /build/run.sh
 
 COPY . /build/pypi/
