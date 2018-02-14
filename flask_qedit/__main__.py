@@ -8,7 +8,7 @@
 @time: 18-1-23 上午12:16
 """
 
-from flask_init.finit import cli
+from flask_qedit.finit import cli
 
 if __name__ == '__main__':
         cli()
