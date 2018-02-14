@@ -22,16 +22,23 @@ class Project(object):
 
     def repo(self):
         if os.path.exists(self.ppath):
-            print("{} exist".format(self.ppath))
+            print("{} exist.".format(self.ppath))
             return False
-        print("{} will create".format(self.ppath))
-        os.mkdir(self.ppath)
+        print("{} will create.".format(self.ppath))
+        try:
+            os.mkdir(self.ppath)
+        except OSError:
+            # print("{} will create.".format(self.ppath))
+            os.makedirs(self.ppath)
         return True
 
     def pyenv(self, envpath, pythonv='python3'):
         if os.path.exists(envpath):
             return False
-        os.mkdir(envpath)
+        try:
+            os.mkdir(envpath)
+        except OSError:
+            os.makedirs(envpath)
         # virtualenv -p python3  ./test
         try:
             exec_cmd = subprocess.check_output(['virtualenv', '-p', pythonv, envpath])
