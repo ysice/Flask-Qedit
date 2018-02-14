@@ -29,7 +29,7 @@ def get_data_files():
 
 
 def get_install_requires():
-    requires = ['flask>=0.12.2', 'click>=6.7']
+    requires = ['flask>=0.12.2', 'click>=6.7', 'virtualenv>=15.1.0']
     # if sys.platform.startswith('win'):
     #    requires.append('bottle')
     return requires

@@ -97,9 +97,9 @@ def cli():
 def new(project_name, path, envpath, simple):
     user = getpass.getuser()
     if path.startswith("ysbot"):
-        path = user + '/' + path
+        path = '/' + user + '/' + path
     if envpath.startswith("ysbot"):
-        envpath = user + '/' + envpath
+        envpath = '/' + user + '/' + envpath
     project_path = os.path.join(path, project_name)
     project_envpath = os.path.join(path, envpath)
     repo = Project(project_name, project_path, simple)
