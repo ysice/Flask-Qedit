@@ -8,8 +8,12 @@ function prepare(){
     #cmi=$(git log -n 1 --pretty --format=%h)
     cmi=$(git describe --tag|sed 's/^v//'| tr '-' '.')
     cp Dockerfile.pypi Dockerfile.release
-    sed -i "s#0.0.0#$cmi#g" Dockerfile.release
-
+    uname -s | grep -i darwin > /dev/null
+    if [ "$?" -eq 0 ];then
+        sed -i ""  "s#0.0.0#$cmi#g" Dockerfile.release
+    else
+        sed -i "s#0.0.0#$cmi#g" Dockerfile.release
+    fi
 }
 
 function run(){
