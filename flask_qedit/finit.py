@@ -108,7 +108,8 @@ def new(project_name, path, envpath, simple):
     if repo.repo():
         if repo.pyenv(project_envpath):
             click.echo("create project {} successful".format(project_name))
-            return
+            repo.init()
+            click.echo("init project")
     click.echo("Maybe Error, Hehe.")
 
 cli.add_command(new)

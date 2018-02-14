@@ -51,7 +51,7 @@ class tests(Command):
 setup(
     name='Flask-Qedit',
     version=version,
-    description="Quickly initialize the flask application Edit",
+    description="Quickly initialize the flask application.",
     long_description=long_description,
     author='ysicing',
     author_email='ops.ysicing@gmail.com',
