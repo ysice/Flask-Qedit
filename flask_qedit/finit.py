@@ -22,8 +22,9 @@ class Project(object):
 
     def repo(self):
         if os.path.exists(self.ppath):
+            print("{} exist".format(self.ppath))
             return False
-
+        print("{} will create".format(self.ppath))
         os.mkdir(self.ppath)
         return True
 
