@@ -96,9 +96,9 @@ def cli():
 @click.option('--simple', is_flag=True)
 def new(project_name, path, envpath, simple):
     user = getpass.getuser()
-    if path.startwith("ysbot"):
+    if path.startswith("ysbot"):
         path = user + '/' + path
-    if envpath.startwith("ysbot"):
+    if envpath.startswith("ysbot"):
         envpath = user + '/' + envpath
     project_path = os.path.join(path, project_name)
     project_envpath = os.path.join(path, envpath)
