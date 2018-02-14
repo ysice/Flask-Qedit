@@ -83,7 +83,7 @@ pro_path=$1
 venv_path=$2
 
 source $venv_path/bin/activate
-cd pro_path
+cd $pro_path
 pip install Flask
 pip freeze > requirements.txt
 '''
