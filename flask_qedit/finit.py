@@ -72,12 +72,14 @@ if __name__ == '__main__':
 
         '''
         with open(os.path.join(self.ppath, self.pname+'.py'), 'w') as f:
+            print(simple_py)
             f.write(simple_py)
+            print("done")
         return True
 
     def init(self):
         if self.simple:
-            self.do_simple()
+            return self.do_simple()
         else:
             # Todo
             print("pass")
@@ -91,9 +93,9 @@ def cli():
 
 @click.command(help='create new project')
 @click.argument('project_name')
-@click.option('--path', default="ysbot/repo/")
-@click.option('--envpath', default="ysbot/pypi/")
-@click.option('--simple', is_flag=True)
+@click.option('--path', default="ysbot/repo/", help="project path")
+@click.option('--envpath', default="ysbot/pypi/", help="project venv path")
+@click.option('--simple', is_flag=True, help="default simple")
 def new(project_name, path, envpath, simple):
     user = getpass.getuser()
     if path.startswith("ysbot"):
@@ -101,7 +103,7 @@ def new(project_name, path, envpath, simple):
     if envpath.startswith("ysbot"):
         envpath = '/' + user + '/' + envpath
     project_path = os.path.join(path, project_name)
-    project_envpath = os.path.join(path, envpath)
+    project_envpath = os.path.join(envpath, project_name)
     repo = Project(project_name, project_path, simple)
     if repo.repo():
         if repo.pyenv(project_envpath):

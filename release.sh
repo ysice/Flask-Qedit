@@ -21,7 +21,7 @@ function run(){
     prepare
     echo "docker build image"
     docker build --no-cache -t $DOCKER_IMG -f Dockerfile.release .
-    echo "release flask-init to pypi"
+    echo "release flask-qedit to pypi"
     docker run -it --rm  -v $(echo ~)/.pypirc:/root/.pypirc --name $DOCKER_CON $DOCKER_IMG release
     echo "docker delete image"
     docker rmi $DOCKER_IMG
