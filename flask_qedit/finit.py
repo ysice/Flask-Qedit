@@ -79,11 +79,10 @@ if __name__ == '__main__':
 
     def init(self):
         if self.simple:
-            return self.do_simple()
+            self.do_simple()
         else:
             # Todo
             print("pass")
-        return True
 
 
 @click.group()
@@ -95,7 +94,7 @@ def cli():
 @click.argument('project_name')
 @click.option('--path', default="ysbot/repo/", help="project path")
 @click.option('--envpath', default="ysbot/pypi/", help="project venv path")
-@click.option('--simple', is_flag=True, help="default simple")
+@click.option('--simple', is_flag=True, default=True, help="default simple")
 def new(project_name, path, envpath, simple):
     user = getpass.getuser()
     if path.startswith("ysbot"):
